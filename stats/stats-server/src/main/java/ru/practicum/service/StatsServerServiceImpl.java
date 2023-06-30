@@ -48,11 +48,13 @@ public class StatsServerServiceImpl implements StatsServerService {
             startTime = LocalDateTime.parse(start, FORMATTER);
             endTime = LocalDateTime.parse(end, FORMATTER);
         } catch (Throwable e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Проблема с неверно переданным временем! Сверь часы!");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Проблема с неверно переданным временем! Сверь часы!");
         }
 
         if (startTime.isAfter(endTime)) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Старт не может быть после конца!");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Старт не может быть после конца!");
         }
 
         if (unique) {
