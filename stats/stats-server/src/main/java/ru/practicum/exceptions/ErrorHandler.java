@@ -15,7 +15,7 @@ public class ErrorHandler {
 
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<?> statusExceptionHandler(final ResponseStatusException e) {
-        log.warn("Произошла ошибка.");
+        log.warn("Произошла ошибка." + e.getMessage());
         return new ResponseEntity<>(Map.of(e.getClass(), Objects.requireNonNull(e.getReason())), e.getStatus());
     }
 }
