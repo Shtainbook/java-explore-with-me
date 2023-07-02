@@ -2,6 +2,7 @@ package ru.practicum.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.practicum.mapper.EndPointHitMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Component
+@Service
 @Slf4j
 @Transactional(readOnly = true)
 public class StatsServerServiceImpl implements StatsServerService {

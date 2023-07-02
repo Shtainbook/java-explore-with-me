@@ -1,5 +1,6 @@
 package ru.practicum.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.practicum.model.EndpointHit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +9,7 @@ import ru.practicum.dto.ViewStatsDto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Repository
 public interface StatsServerRepository extends JpaRepository<EndpointHit, Long> {
 
     @Query("SELECT new ru.practicum.dto.ViewStatsDto(element.app, element.uri, COUNT(DISTINCT element.ip)) " +
