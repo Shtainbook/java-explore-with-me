@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.practicum.mapper.EndPointHitMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.repository.StatsServerRepository;
