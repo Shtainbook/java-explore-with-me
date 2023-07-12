@@ -9,24 +9,20 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 @Entity
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "hits")
 public class EndpointHit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "app")
     private String app;
-
     @Column(name = "uri")
     private String uri;
-
     @Column(name = "ip")
     private String ip;
-
     @Column(name = "created_date")
     private LocalDateTime timestamp;
 }

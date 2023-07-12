@@ -9,7 +9,10 @@ services:
     depends_on:
       - stats-db
     environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:9091
       - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/stats-db
+      - POSTGRES_USER=erken
+      - POSTGRES_PASS=erken
 
   stats-db:
     image: postgres:15.3-alpine
@@ -29,9 +32,13 @@ services:
       - "8080:8080"
     depends_on:
       - ewm-db
+      - stats-server
     environment:
+      - JAVA_TOOL_OPTIONS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8081
       - STATS_SERVER_URL=http://stats-server:9090
       - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/ewm-db
+      - POSTGRES_USER=erken
+      - POSTGRES_PASS=erken
 
   ewm-db:
     image: postgres:15.3-alpine
