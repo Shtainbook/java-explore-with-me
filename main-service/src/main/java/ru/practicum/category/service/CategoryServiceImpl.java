@@ -43,8 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<CategoryDto> getAllCategories(Integer from, Integer size) {
         SizeValidator.validateSize(size);
         log.info("Вызов метода getAllCategories с: from={}, size={}", from, size);
-        return CategoryMapper.toCategoryDto(categoryRepository.
-                findAll(OffsetPageRequest.of(from, size)).getContent());
+        return CategoryMapper.toCategoryDto(categoryRepository.findAll(OffsetPageRequest.of(from, size)).getContent());
     }
 
     @Override
