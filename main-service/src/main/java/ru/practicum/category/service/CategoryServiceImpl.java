@@ -39,7 +39,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional
     public List<CategoryDto> getAllCategories(Integer from, Integer size) {
         SizeValidator.validateSize(size);
         log.info("Вызов метода getAllCategories с: from={}, size={}", from, size);
@@ -47,14 +46,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional
     public CategoryDto getCategoryById(Long id) {
         log.info("Вызов метода getCategoryById с id={}", id);
         return CategoryMapper.toCategoryDto(getCategoryModelById(id));
     }
 
     @Override
-    @Transactional
     public Category getCategoryModelById(Long id) {
         log.info("Вызов метода getCategoryModelById с id={}", id);
         return categoryRepository.findById(id).orElseThrow(() ->
@@ -82,7 +79,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional
     public void categoryExists(Long id) {
         log.info("Вызов метода categoryExists с id={} ", id);
         if (!categoryRepository.existsById(id)) {

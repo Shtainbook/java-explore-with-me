@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public List<UserDto> getUsersByIds(List<Long> ids, Integer from, Integer size) {
 
         SizeValidator.validateSize(size);
@@ -65,7 +64,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void userExists(Long id) {
         if (!userRepository.existsById(id)) {
             throw new NotFoundException("User", id);
@@ -74,7 +72,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User getUserModelById(Long id) {
         log.info("Вызов метода getUserModelById id={}", id);
         return userRepository.findById(id).orElseThrow(() ->

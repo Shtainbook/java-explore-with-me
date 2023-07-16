@@ -22,10 +22,12 @@ public class ParticipationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "event_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Event event;
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "requester_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

@@ -1,13 +1,14 @@
 package ru.practicum.location.mapper;
 
-import lombok.experimental.UtilityClass;
 import ru.practicum.location.model.Location;
 import ru.practicum.location.model.LocationDto;
 
-@UtilityClass
 public class LocationMapper {
 
-    public LocationDto toLocationDto(Location location) {
+    private LocationMapper() {
+    }
+
+    public static LocationDto toLocationDto(Location location) {
         return LocationDto.builder()
                 .lat(location.getLat())
                 .lon(location.getLon())

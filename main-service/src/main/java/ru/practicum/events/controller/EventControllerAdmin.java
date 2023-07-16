@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.events.model.EventFullDto;
-import ru.practicum.events.model.UpdateEventAdminRequest;
+import ru.practicum.events.model.UpdateEventAdminRequestDto;
 import ru.practicum.events.service.EventService;
 
 import javax.validation.Valid;
@@ -42,7 +42,7 @@ public class EventControllerAdmin {
 
     @PatchMapping("/{eventId}")
     public ResponseEntity<EventFullDto> updateEvent(@PathVariable Long eventId,
-                                                    @Valid @RequestBody UpdateEventAdminRequest updateEventAdminRequest) {
+                                                    @Valid @RequestBody UpdateEventAdminRequestDto updateEventAdminRequest) {
         log.info("Запрос UPDATE '/admin/events/{}' для метода updateEventByAdmin с eventId={} с updateEventAdminRequest={}", eventId, eventId, updateEventAdminRequest);
         return new ResponseEntity<>(eventService.updateEventByAdmin(eventId, updateEventAdminRequest), HttpStatus.OK);
     }

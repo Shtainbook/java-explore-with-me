@@ -23,12 +23,15 @@ public class Event {
     private Long id;
     @Column(length = 2000, nullable = false)
     private String annotation;
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "initiator_id", nullable = false)
     private User initiator;
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;

@@ -1,6 +1,5 @@
 package ru.practicum.events.mapper;
 
-import lombok.experimental.UtilityClass;
 import ru.practicum.category.mapper.CategoryMapper;
 import ru.practicum.events.model.Event;
 import ru.practicum.events.model.EventFullDto;
@@ -14,10 +13,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@UtilityClass
 public class EventMapper {
 
-    public EventShortDto toEventShortDto(Event event) {
+    private EventMapper() {
+    }
+
+    public static EventShortDto toEventShortDto(Event event) {
         return EventShortDto.builder()
                 .id(event.getId())
                 .annotation(event.getAnnotation())
@@ -29,7 +30,7 @@ public class EventMapper {
                 .build();
     }
 
-    public Set<EventShortDto> toEventShortDtoSet(Iterable<Event> events) {
+    public static Set<EventShortDto> toEventShortDtoSet(Iterable<Event> events) {
         Set<EventShortDto> result = new HashSet<>();
 
         for (Event element : events) {
@@ -39,7 +40,7 @@ public class EventMapper {
         return result;
     }
 
-    public List<EventShortDto> toEventShortDto(Iterable<Event> events) {
+    public static List<EventShortDto> toEventShortDto(Iterable<Event> events) {
         List<EventShortDto> result = new ArrayList<>();
 
         for (Event element : events) {
@@ -49,7 +50,7 @@ public class EventMapper {
         return result;
     }
 
-    public Event toEvent(NewEventDto newEventDto) {
+    public static Event toEvent(NewEventDto newEventDto) {
         return Event.builder()
                 .title(newEventDto.getTitle())
                 .annotation(newEventDto.getAnnotation())
@@ -62,7 +63,7 @@ public class EventMapper {
                 .build();
     }
 
-    public EventFullDto toEventFullDto(Event event) {
+    public static EventFullDto toEventFullDto(Event event) {
         return EventFullDto.builder()
                 .annotation(event.getAnnotation())
                 .category(CategoryMapper.toCategoryDto(event.getCategory()))

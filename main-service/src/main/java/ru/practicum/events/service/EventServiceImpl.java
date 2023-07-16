@@ -77,7 +77,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
-    public EventFullDto updateEventByUser(Long userId, Long eventId, UpdateEventUserRequest updateEventUserRequest) {
+    public EventFullDto updateEventByUser(Long userId, Long eventId, UpdateEventUserRequestDto updateEventUserRequest) {
         userService.userExists(userId);
 
         Event event = eventRepository.findById(eventId).orElseThrow(() ->
@@ -142,7 +142,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     @Transactional
-    public EventFullDto updateEventByAdmin(Long eventId, UpdateEventAdminRequest updateEventAdminRequest) {
+    public EventFullDto updateEventByAdmin(Long eventId, UpdateEventAdminRequestDto updateEventAdminRequest) {
         Event event = getEventModelById(eventId);
 
         if (event.getEventDate().isBefore(LocalDateTime.now().plusHours(1))) {
@@ -275,7 +275,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public Event getEventModelById(Long id) {
         log.info("Вызов метода getEventModelById с id={}", id);
         return eventRepository.findById(id).orElseThrow(() ->
@@ -283,7 +282,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public List<EventShortDto> getAllEventsByUserId(Long userId, Integer from, Integer size) {
         SizeValidator.validateSize(size);
         userService.userExists(userId);
@@ -302,7 +300,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public EventFullDto getEventById(Long userId, Long eventId) {
         userService.userExists(userId);
         Event event = getEventModelById(eventId);
@@ -311,7 +308,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public List<EventFullDto> getEventsByUserIds(
             List<Long> users,
             List<String> states,
@@ -351,7 +347,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public List<EventShortDto> getEventsByParams(
             String text,
             List<Long> categories,
@@ -414,7 +409,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public List<ParticipationRequestDto> getRequests(Long userId, Long eventId) {
         userService.userExists(userId);
 
@@ -425,7 +419,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional
     public EventFullDto getEventById(Long eventId, HttpServletRequest request) {
 
         statsClient.saveHit("ewm-main-service", request.getRequestURI(), request.getRemoteAddr());

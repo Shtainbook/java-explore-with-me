@@ -78,7 +78,6 @@ public class ParticipationRequestServiceImpl implements ParticipationRequestServ
     }
 
     @Override
-    @Transactional
     public List<ParticipationRequestDto> getAllRequestsByUserId(Long userId) {
         userService.userExists(userId);
         List<ParticipationRequest> requests = participationRequestRepository.findAllByRequesterId(userId);

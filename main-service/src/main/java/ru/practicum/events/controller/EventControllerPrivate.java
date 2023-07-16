@@ -51,7 +51,7 @@ public class EventControllerPrivate {
     @PatchMapping("/{userId}/events/{eventId}")
     public ResponseEntity<EventFullDto> updateEvent(@PathVariable Long userId,
                                                     @PathVariable Long eventId,
-                                                    @Valid @RequestBody UpdateEventUserRequest updateEventUserRequest) {
+                                                    @Valid @RequestBody UpdateEventUserRequestDto updateEventUserRequest) {
         log.info("Запрос PATCH '/users/{}/events/{}' для метода updateEventByUser с updateEventUserRequest={}",
                 userId, eventId, updateEventUserRequest);
         return new ResponseEntity<>(eventService.updateEventByUser(userId, eventId, updateEventUserRequest), HttpStatus.OK);

@@ -43,7 +43,6 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    @Transactional
     public List<CompilationDto> getCompilationsByPinned(Boolean pinned, Integer from, Integer size) {
         SizeValidator.validateSize(size);
         List<Compilation> compilations;
@@ -57,14 +56,12 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    @Transactional
     public CompilationDto getCompilationById(Long id) {
         log.info("Вызов метода getCompilationById с id={}", id);
         return CompilationMapper.toCompilationDto(getCompilationModelById(id));
     }
 
     @Override
-    @Transactional
     public Compilation getCompilationModelById(Long id) {
         log.info("Вызов метода getCompilationModelById с id={}", id);
         return compilationRepository.findById(id).orElseThrow(() ->
@@ -97,7 +94,6 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    @Transactional
     public void compilationExists(Long id) {
         log.info("Вызов метода compilationExists с id={}", id);
         if (!compilationRepository.existsById(id)) {

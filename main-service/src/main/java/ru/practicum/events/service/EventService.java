@@ -16,14 +16,14 @@ public interface EventService {
     EventFullDto updateEventByUser(
             Long userId,
             Long eventId,
-            UpdateEventUserRequest updateEventUserRequest);
+            UpdateEventUserRequestDto updateEventUserRequest);
 
     EventRequestStatusUpdateResult updateRequestStatus(
             Long userId,
             Long eventId,
             EventRequestStatusUpdateRequest eventRequestStatusUpdateRequest);
 
-    EventFullDto updateEventByAdmin(Long eventId, UpdateEventAdminRequest updateEventAdminRequest);
+    EventFullDto updateEventByAdmin(Long eventId, UpdateEventAdminRequestDto updateEventAdminRequest);
 
     Event getEventModelById(Long id);
 

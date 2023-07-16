@@ -1,6 +1,5 @@
 package ru.practicum.compilation.mapper;
 
-import lombok.experimental.UtilityClass;
 import ru.practicum.compilation.model.Compilation;
 import ru.practicum.compilation.model.CompilationDto;
 import ru.practicum.compilation.model.NewCompilationDto;
@@ -10,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@UtilityClass
 public class CompilationMapper {
 
-    public CompilationDto toCompilationDto(Compilation compilation) {
+    private CompilationMapper() {
+    }
+
+    public static CompilationDto toCompilationDto(Compilation compilation) {
         return CompilationDto.builder()
                 .id(compilation.getId())
                 .events(compilation.getEvents() != null
@@ -24,7 +25,7 @@ public class CompilationMapper {
                 .build();
     }
 
-    public Compilation toCompilation(NewCompilationDto newCompilationDto) {
+    public static Compilation toCompilation(NewCompilationDto newCompilationDto) {
         return Compilation.builder()
                 .pinned(newCompilationDto.getPinned() != null
                         ? newCompilationDto.getPinned()
@@ -33,7 +34,7 @@ public class CompilationMapper {
                 .build();
     }
 
-    public List<CompilationDto> toCompilationDto(Iterable<Compilation> compilations) {
+    public static List<CompilationDto> toCompilationDto(Iterable<Compilation> compilations) {
         List<CompilationDto> result = new ArrayList<>();
         for (Compilation element : compilations) {
             result.add(toCompilationDto(element));

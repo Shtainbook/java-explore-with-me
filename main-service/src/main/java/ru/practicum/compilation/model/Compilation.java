@@ -10,7 +10,7 @@ import java.util.Set;
 @Setter
 @Builder
 @Entity
-@ToString
+@ToString()
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "compilations")
@@ -22,6 +22,7 @@ public class Compilation {
     private Boolean pinned;
     @Column(length = 120, nullable = false)
     private String title;
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(name = "compilations_events",
             joinColumns = @JoinColumn(name = "compilation_id"),

@@ -9,6 +9,7 @@ import ru.practicum.location.repository.LocationRepository;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 public class LocationServiceImpl implements LocationService {
 
     private final LocationRepository locationRepository;
@@ -19,7 +20,6 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    @Transactional
     public Location getByLatAndLong(Float lat, Float lon) {
         log.info("Вызов метода getByLatAndLong с lat={} and lon={}", lat, lon);
         return locationRepository.findFirstByLatAndLon(lat, lon);
@@ -33,20 +33,17 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    @Transactional
     public Boolean locationExists(Float lat, Float lon) {
         log.info("Вызов метода locationExists с lat={} и lon={}", lat, lon);
         return locationRepository.findFirstByLatAndLon(lat, lon) != null;
     }
 
     @Override
-    @Transactional
     public Location getLocation(Float lat, Float lon) {
 
         if (locationExists(lat, lon)) {
             return getByLatAndLong(lat, lon);
         }
-
         Location location = Location.builder()
                 .lat(lat)
                 .lon(lon)

@@ -1,16 +1,16 @@
 package ru.practicum.requests.mapper;
 
-import lombok.experimental.UtilityClass;
 import ru.practicum.requests.model.ParticipationRequest;
 import ru.practicum.requests.model.ParticipationRequestDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@UtilityClass
 public class ParticipationRequestMapper {
+    private ParticipationRequestMapper() {
+    }
 
-    public ParticipationRequestDto toRequestDto(ParticipationRequest participationRequest) {
+    public static ParticipationRequestDto toRequestDto(ParticipationRequest participationRequest) {
         return ParticipationRequestDto.builder()
                 .created(participationRequest.getCreated())
                 .event(participationRequest.getEvent().getId())
@@ -20,7 +20,7 @@ public class ParticipationRequestMapper {
                 .build();
     }
 
-    public List<ParticipationRequestDto> toRequestDto(Iterable<ParticipationRequest> eventRequests) {
+    public static List<ParticipationRequestDto> toRequestDto(Iterable<ParticipationRequest> eventRequests) {
         List<ParticipationRequestDto> result = new ArrayList<>();
         for (ParticipationRequest element : eventRequests) {
             result.add(toRequestDto(element));

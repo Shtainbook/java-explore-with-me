@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateEventUserRequest {
+public class UpdateEventUserRequestDto {
     @Size(message = "У поля annotation max длина = 2000 символов, а min длина = 20 символ", max = 2000, min = 20)
     private String annotation;
     private Long category;
