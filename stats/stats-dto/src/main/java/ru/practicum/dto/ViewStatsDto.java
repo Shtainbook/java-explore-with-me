@@ -1,11 +1,10 @@
 package ru.practicum.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class ViewStatsDto {
     private String app;

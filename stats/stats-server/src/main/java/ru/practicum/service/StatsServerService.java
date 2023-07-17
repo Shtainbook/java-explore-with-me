@@ -5,9 +5,9 @@ import ru.practicum.dto.ViewStatsDto;
 
 import java.util.List;
 
-public interface StatsServerService {
+public interface StatsServerService  {
 
     EndpointHitDto saveHit(EndpointHitDto endpointHitDto);
 
-    List<ViewStatsDto> getStats(String start, String end, List<String> uri, Boolean unique);
+    List<ViewStatsDto> getStats(String start, String end, List<String> uris, Boolean unique);
 }
