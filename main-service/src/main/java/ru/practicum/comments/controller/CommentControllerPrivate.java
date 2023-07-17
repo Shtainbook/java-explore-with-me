@@ -14,17 +14,17 @@ import javax.validation.Valid;
 
 @Slf4j
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/users/{userId}")
 public class CommentControllerPrivate {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @Autowired
     public CommentControllerPrivate(CommentService commentService) {
         this.commentService = commentService;
     }
 
-    @PostMapping("/{userId}/events/{eventId}/comments")
+    @PostMapping("/events/{eventId}/comments")
     public ResponseEntity<CommentDto> createComment(@PathVariable Long userId,
                                                     @PathVariable Long eventId,
                                                     @Valid @RequestBody NewCommentDto newCommentDto) {
@@ -32,7 +32,7 @@ public class CommentControllerPrivate {
         return new ResponseEntity<>(commentService.createComment(userId, eventId, newCommentDto), HttpStatus.CREATED);
     }
 
-    @PostMapping("/{userId}/comments/{commentId}/like")
+    @PostMapping("/comments/{commentId}/like")
     public ResponseEntity<?> addLikeToComment(@PathVariable Long userId,
                                               @PathVariable Long commentId) {
         log.info("Запрос POST '/users/{}/comments/{}/like' для метода addLikeToComment с данными commentId={}", userId, commentId, commentId);
@@ -40,7 +40,7 @@ public class CommentControllerPrivate {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/{userId}/comments/{commentId}/dislike")
+    @PostMapping("/comments/{commentId}/dislike")
     public ResponseEntity<?> addDislikeToComment(@PathVariable Long userId,
                                                  @PathVariable Long commentId) {
         log.info("Запрос POST '/users/{}/comments/{}/dislike' для метода addDislikeToComment с данными commentId={}", userId, commentId, commentId);
@@ -48,7 +48,7 @@ public class CommentControllerPrivate {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PatchMapping("/{userId}/comments/{commentId}")
+    @PatchMapping("/comments/{commentId}")
     public ResponseEntity<CommentDto> updateCommentById(@PathVariable Long userId,
                                                         @PathVariable Long commentId,
                                                         @Valid @RequestBody UpdateCommentRequestDto updateCommentRequest) {
@@ -56,7 +56,7 @@ public class CommentControllerPrivate {
         return new ResponseEntity<>(commentService.updateComment(userId, commentId, updateCommentRequest), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{userId}/comments/{commentId}")
+    @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<?> deleteCommentByUser(@PathVariable Long userId,
                                                  @PathVariable Long commentId) {
         log.info("Запрос DELETE '/users/{}/comments/{}' для метода deleteCommentByUser с данными commentId={}", userId, commentId, commentId);

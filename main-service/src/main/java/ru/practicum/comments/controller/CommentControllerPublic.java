@@ -12,17 +12,17 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/events/{eventId}")
 public class CommentControllerPublic {
 
-    private CommentService commentService;
+    private final CommentService commentService;
 
     @Autowired
     public CommentControllerPublic(CommentService commentService) {
         this.commentService = commentService;
     }
 
-    @GetMapping("/{eventId}/comments")
+    @GetMapping("/comments")
     public ResponseEntity<List<CommentDto>> getAllCommentsByEventId(@PathVariable Long eventId,
                                                                     @RequestParam(defaultValue = "0") Integer from,
                                                                     @RequestParam(defaultValue = "10") Integer size) {
@@ -30,7 +30,7 @@ public class CommentControllerPublic {
         return new ResponseEntity<>(commentService.getAllCommentsByEventId(eventId, from, size), HttpStatus.OK);
     }
 
-    @GetMapping("/{eventId}/comments/count")
+    @GetMapping("/comments/count")
     public ResponseEntity<Long> getCommentsCountByEventId(@PathVariable Long eventId) {
         log.info("Запрос GET '/events/{eventId}/comments/count' для метода getCommentsCountByEventId с данными eventId={}", eventId);
         return new ResponseEntity<>(commentService.getCommentsCountByEventId(eventId), HttpStatus.OK);
