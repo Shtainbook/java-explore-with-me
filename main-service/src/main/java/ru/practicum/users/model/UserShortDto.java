@@ -2,7 +2,7 @@ package ru.practicum.users.model;
 
 import lombok.*;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter

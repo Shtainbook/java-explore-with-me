@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ServerWebInputException;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
 
@@ -120,5 +121,16 @@ public class ErrorHandler {
                 .message(e.getMessage())
                 .timestamp(LocalDateTime.now())
                 .build(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler({ConstraintViolationException.class})
+    public ResponseEntity<ErrorEntity> handleConstraintViolationException(ConstraintViolationException e) {
+        log.warn("Произошла ошибка." + e.getMessage());
+        return new ResponseEntity<>(ErrorEntity.builder()
+                .status(BAD_REQUEST)
+                .reason("Запрос сделан некорректно.")
+                .message(e.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build(), HttpStatus.BAD_REQUEST);
     }
 }

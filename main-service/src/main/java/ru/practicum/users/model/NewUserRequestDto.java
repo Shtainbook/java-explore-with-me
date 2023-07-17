@@ -2,7 +2,9 @@ package ru.practicum.users.model;
 
 import lombok.*;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -10,7 +12,7 @@ import javax.validation.constraints.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewUserRequest {
+public class NewUserRequestDto {
     @NotBlank(message = "Поле email для которого был осуществлен запрос не может быть пустым или null")
     @Email(message = "У поля email должна быть введеная электронная почта")
     @Size(message = "У поля email max длина = 254 символов, а min длина = 6 символ", max = 254, min = 6)
