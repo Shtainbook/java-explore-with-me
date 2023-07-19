@@ -6,6 +6,7 @@ import ru.practicum.comments.model.CommentDislike;
 
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public interface DislikeRepository extends JpaRepository<CommentDislike, Long> {
 

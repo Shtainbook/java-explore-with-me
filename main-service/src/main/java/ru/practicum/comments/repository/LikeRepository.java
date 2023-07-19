@@ -6,6 +6,7 @@ import ru.practicum.comments.model.CommentLike;
 
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public interface LikeRepository extends JpaRepository<CommentLike, Long> {
 
