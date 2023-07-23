@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.users.model.NewUserRequest;
+import ru.practicum.users.model.NewUserRequestDto;
 import ru.practicum.users.model.UserDto;
 import ru.practicum.users.service.UserService;
 
@@ -27,7 +27,7 @@ public class UserControllerAdmin {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody NewUserRequest newUserRequest) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody NewUserRequestDto newUserRequest) {
         log.info("Запрос POST '/admin/users' для метода createUser с newUserRequest={}", newUserRequest);
         return new ResponseEntity<>(userService.createUser(newUserRequest), HttpStatus.CREATED);
     }

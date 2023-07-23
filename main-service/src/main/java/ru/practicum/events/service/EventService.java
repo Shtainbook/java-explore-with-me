@@ -2,7 +2,6 @@ package ru.practicum.events.service;
 
 import ru.practicum.enums.EventSortOptions;
 import ru.practicum.events.model.*;
-import ru.practicum.events.model.Event;
 import ru.practicum.requests.model.ParticipationRequestDto;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,4 +54,6 @@ public interface EventService {
     List<ParticipationRequestDto> getRequests(Long userId, Long eventId);
 
     EventFullDto getEventById(Long eventId, HttpServletRequest request);
+
+    void eventExists(Long eventId);
 }

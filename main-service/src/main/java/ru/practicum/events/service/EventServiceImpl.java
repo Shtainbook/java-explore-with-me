@@ -431,6 +431,15 @@ public class EventServiceImpl implements EventService {
         return toEventFullDtoWithViewsAndConfirmedRequests(EventMapper.toEventFullDto(event), event);
     }
 
+    @Override
+    public void eventExists(Long eventId) {
+        log.info("Checking that event with id={} exists", eventId);
+
+        if (!eventRepository.existsById(eventId)) {
+            throw new NotFoundException("Event", eventId);
+        }
+    }
+
     private EventFullDto toEventFullDtoWithViewsAndConfirmedRequests(EventFullDto eventFullDto, Event event) {
         Map<Long, Long> confirmedRequests = getConfirmedRequests(List.of(event));
         Map<Long, Long> views = getViews(List.of(event));

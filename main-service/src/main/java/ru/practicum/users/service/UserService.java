@@ -1,14 +1,14 @@
 package ru.practicum.users.service;
 
-import ru.practicum.users.model.NewUserRequest;
-import ru.practicum.users.model.UserDto;
+import ru.practicum.users.model.NewUserRequestDto;
 import ru.practicum.users.model.User;
+import ru.practicum.users.model.UserDto;
 
 import java.util.List;
 
 public interface UserService {
 
-    UserDto createUser(NewUserRequest newUserRequest);
+    UserDto createUser(NewUserRequestDto newUserRequest);
 
     List<UserDto> getUsersByIds(List<Long> ids, Integer from, Integer size);
 

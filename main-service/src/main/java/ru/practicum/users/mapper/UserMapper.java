@@ -1,15 +1,14 @@
 package ru.practicum.users.mapper;
 
-import ru.practicum.users.model.NewUserRequest;
+import ru.practicum.users.model.NewUserRequestDto;
+import ru.practicum.users.model.User;
 import ru.practicum.users.model.UserDto;
 import ru.practicum.users.model.UserShortDto;
-import ru.practicum.users.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserMapper {
-
     private UserMapper() {
     }
 
@@ -29,7 +28,7 @@ public class UserMapper {
         return result;
     }
 
-    public static User toUser(NewUserRequest newUserRequest) {
+    public static User toUser(NewUserRequestDto newUserRequest) {
         return User.builder()
                 .name(newUserRequest.getName())
                 .email(newUserRequest.getEmail())
